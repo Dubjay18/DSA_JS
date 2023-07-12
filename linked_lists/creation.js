@@ -107,6 +107,17 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  prepend(value) {
+    const preNode = {
+      value,
+      next: this.head,
+      prev: null,
+    };
+    this.head.prev = preNode;
+    this.head = preNode;
+    this.length++;
+    return this;
+  }
 }
 const myLinkedList2 = new LinkedList(10);
 const Dlinked = new DoublyLinkedList(10);
