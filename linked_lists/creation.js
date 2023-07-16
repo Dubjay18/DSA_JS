@@ -118,6 +118,26 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  insert(index, value) {
+    if (!(index && value)) {
+    }
+    if (index >= this.length) {
+      return this.append(value);
+    }
+    const newNode = {
+      value,
+      next: null,
+      prev: null,
+    };
+    const leader = this.traverseToIndex(index - 1);
+    const follower = leader.next;
+    leader.next = newNode;
+    newNode.prev = leader;
+    newNode.next = follower;
+    follower.prev = newNode;
+    this.length++;
+    return this.printList();
+  }
 }
 const myLinkedList2 = new LinkedList(10);
 const Dlinked = new DoublyLinkedList(10);
