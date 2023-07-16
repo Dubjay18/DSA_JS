@@ -84,6 +84,24 @@ class LinkedList {
     this.length--;
     return this.printList();
   }
+  reverse() {
+    if (this.length === 1) {
+      return this.head;
+    }
+    let first = this.head;
+    this.tail = this.head;
+    let second = first.next;
+    while (second) {
+      let temp = second.next;
+      second.next = first;
+      first = second;
+      second = temp;
+      console.log(this.printList());
+    }
+    this.head.next = null;
+    this.head = first;
+    return this.printList();
+  }
 }
 class DoublyLinkedList {
   constructor(value) {
