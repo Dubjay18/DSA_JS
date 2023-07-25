@@ -2,7 +2,7 @@ class Node {
   constructor(value) {
     this.left = null;
     this.right = null;
-    this.value = null;
+    this.value = value;
   }
 }
 class BinarySearchTree {
@@ -20,7 +20,7 @@ class BinarySearchTree {
         if (value < currentnode.value) {
           if (!currentnode.left) {
             currentnode.left = newNode;
-            returnthis;
+            return this;
           }
           currentnode = currentnode.left;
         } else {
@@ -33,4 +33,29 @@ class BinarySearchTree {
       }
     }
   }
+  lookup(value) {
+    if (!this.root) {
+      return false;
+    }
+
+    let currentNode = this.root;
+    while (currentNode) {
+      if (value > currentNode.value) {
+        currentNode = currentNode.right;
+      } else if (value < currentNode.value) {
+        currentNode = currentNode.left;
+      } else if (currentNode.value === value) {
+        return currentNode;
+      }
+    }
+    return false;
+  }
 }
+
+const tree = new BinarySearchTree();
+tree.insert(9);
+tree.insert(4);
+tree.insert(6);
+tree.insert(30);
+tree.insert(170);
+console.log(tree.lookup(30));
